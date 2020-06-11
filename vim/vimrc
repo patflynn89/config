@@ -1,0 +1,45 @@
+set nobackup
+filetype indent on
+set number
+set noexrc
+set autoindent
+set expandtab
+set noerrorbells
+set wildmenu
+set lazyredraw
+set showmatch
+set incsearch
+set hlsearch
+set foldenable
+set foldlevelstart=10
+set showmode
+set nowrap
+set scrolloff=4
+set tabstop=4
+set cursorline
+set softtabstop=4
+syntax on
+vnoremap <C-c> "+y
+map <C-v> "+p
+syntax enable
+colorscheme torte
+setf dosini
+"set bg=light
+hi Normal guibg=NONE ctermbg=NONE
+
+let t:not_transparent = 0
+
+function! Toggle_transparent()
+    if !(t:not_transparent)
+        set background=dark
+        let t:not_transparent = 1
+
+    else
+        hi Normal guibg=NONE ctermbg=NONE
+        let t:not_transparent = 0
+    endif
+endfunction
+nnoremap <C-t> : call Toggle_transparent()<CR>
+
+"Enable syntax highlighting for .rasi file (e.g rofi)
+au BufNewFile,BufRead /*.rasi setf css
